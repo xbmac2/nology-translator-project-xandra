@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="cyphers.js" defer></script>
+  <script src="english-to-morse.js" defer></script>
   <title>Morse Code Translator</title>
 </head>
 <body>
+  <h1>Morse Code Translator</h1>
+  <div class="container">
+    <textarea name="" id="englishInput" cols="50" rows="10"></textarea>
+    <button class="translate-btn" id="translateBtn">Translate</button>
+  <div class="output-field" id="outputField">
+    <p class="morse-output" id="morseOutput"></p>
+  </div>
+  </div>
   
 </body>
 </html>
