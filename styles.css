@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.output-field {
+  height: 180px;
+  width: 500px;
+  border: 1px solid blue;
+}
+
+.translate-btn {
+  height: 20px;
+}
