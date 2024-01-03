@@ -67,6 +67,7 @@ textarea::-webkit-scrollbar {
 .output-field p {
   font-size: larger;
   font-weight: bold;
+  font-family: "Rosario", sans-serif;
 }
 
 .translate-btn {
