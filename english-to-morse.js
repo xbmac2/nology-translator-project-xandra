@@ -19,7 +19,7 @@ const encoder = (stringToEncode) => {
   document.querySelector("#morseOutput").innerText = morseStr;
 };
 
-//clicking button
+//clicking translate button
 document.querySelector("#translateBtn").addEventListener("click", () => {
   encoder(document.querySelector("#englishInput").value)
 });
