@@ -27,6 +27,18 @@ h1 {
 .options-bar {
   height: 50px;
   border: 1px solid green;
+
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btns-container {
+  height: 100%;
+  width: 48vw;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
 
 .translations-container {
@@ -34,15 +46,8 @@ h1 {
   justify-content: space-evenly;
   //border: 1px solid red;
   height: 180px;
+  position: relative;
 }
-
-// .inputs-container {
-//   display: flex;
-//   flex-direction: column;
-//   border: 1px solid yellow;
-  
-  
-// }
 
 @import url('https://fonts.googleapis.com/css2?family=Rosario:wght@500&display=swap');
 .textarea {
@@ -50,7 +55,7 @@ h1 {
   outline: none;
   min-height: 100%;
   
-  width: 48vw;
+  width: 48.5vw;
   padding: 15px;
   font-family: 'Rosario', sans-serif;
   font-size: larger;
@@ -63,10 +68,6 @@ h1 {
   
 }
 
-// textarea:is(:focus, :valid) {
-//   border-width: 2px;
-// }
-
 ::placeholder {
   color: black;
   opacity: 1;
@@ -76,15 +77,26 @@ textarea::-webkit-scrollbar {
   width: 0px;
 }
 
-// .outputs-container {
-//   //border: 1px solid purple;
-  
-//   display: flex;
-//   justify-content: center;
-// }
+.clear-btn {
+  z-index: 5;
+  position: absolute;
+  left: 46.5vw;
+  top: 10px;
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  border: none;
+
+    &:hover {
+      background-color: #e4dcd47c;
+    }
+};
+
+// .clear-btn:hover
 
 .output-field {
-  width: 48vw;
+  width: 48.5vw;
   height: 100%;
   //border: 2px solid #777069;
   background-color: #e4dcd47c;
