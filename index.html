@@ -15,8 +15,14 @@
   </header>
   
   <section class="options-bar">
-    <button class="translate-btn" id="encoderBtn">Translate Eng to Morse</button>
-    <button class="translate-btn" id="decoderBtn">Translate Morse to Eng</button>
+    <!-- <button class="translate-btn" id="encoderBtn">Translate Eng to Morse</button>
+    <button class="translate-btn" id="decoderBtn">Translate Morse to Eng</button> -->
+    <div class ="btns-container">
+      <input type="radio" name="language" value="detect" id="detect" class="radio__input"><label for="detect" id="detectLabel" class="radio__label">Detect Language</label>
+      <input type="radio" name="language" value="english" id="english" class="radio__input"><label for="english" class="radio__label">English</label>
+      <input type="radio" name="language" value="morse" id="morse" class="radio__input"><label for="morse" class="radio__label">Morse</label>
+    </div>
+    
   </section>
 
   <div class="translations-container">

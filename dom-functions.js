@@ -1,6 +1,9 @@
 import { encoder } from "./english-to-morse.js";
 import { decoder } from "./morse-to-english.js";
 
+//default select detect radio btn on load
+document.querySelector("#detect").checked = true;
+
 // auto-resizes textarea height
 document.querySelector("textarea").addEventListener("input", e => {
   document.querySelector(".translations-container").style.height = "185px";
@@ -10,8 +13,48 @@ document.querySelector("textarea").addEventListener("input", e => {
   document.querySelector(".output-field").style.height = `${scHeight}px`;
 })
 
-//clicking encoder button eng to morse
-document.querySelector("#encoderBtn").addEventListener("click", () => {
+//adding input to textarea translates either way
+//the below works until user tries to mix inputs
+
+document.querySelector("textarea").addEventListener("input", () => {
+
+  const userInputArr = document.querySelector("textarea").value.split("");
+
+  function checkMorseChars(char) {
+    return /[\s\.\-\/]/.test(char);
+  };
+
+  //autocheck aka detect langugae;
+  if (document.querySelector("#detect").checked) {
+    if (userInputArr.every(checkMorseChars)) {
+      //run decoder aka assume morse
+      document.querySelector("#detectLabel").innerText = "Morse - Detected";
+      document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+    } else {
+      //run encoder aka assume english
+      document.querySelector("#detectLabel").innerText = "English - Detected";
+      document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+    }
+  }
+
+  if (document.querySelector("#english").checked) {
+    document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+  };
+
+  if (document.querySelector("#morse").checked) {
+    document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+  }
+
+  //resize output field to fit overflowing paragraph morse
+  const outputHeight = document.querySelector("p").scrollHeight;
+  if (outputHeight > document.querySelector("textarea").scrollHeight) {
+    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
+    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
+  }
+});
+
+//checking radio buttons runs the relevant function
+document.querySelector("#english").addEventListener("click", () => {
   document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
 
   //resize output field to fit overflowing paragraph morse
@@ -19,11 +62,10 @@ document.querySelector("#encoderBtn").addEventListener("click", () => {
   if (outputHeight > document.querySelector("textarea").scrollHeight) {
     document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
     document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-  }
+  };
 });
 
-//clicking decoder button morse to eng
-document.querySelector("#decoderBtn").addEventListener("click", () => {
+document.querySelector("#morse").addEventListener("click",  () => {
   document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
 
   //resize output field to fit overflowing paragraph morse
@@ -31,30 +73,52 @@ document.querySelector("#decoderBtn").addEventListener("click", () => {
   if (outputHeight > document.querySelector("textarea").scrollHeight) {
     document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
     document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-  }
+  };
 });
 
-//adding input to textarea translates either way
-//the below works until user tries to mix inputs
+document.querySelector("#detect").addEventListener("click", () => {
+  const userInputArr = document.querySelector("textarea").value.split("");
 
-// document.querySelector("textarea").addEventListener("input", () => {
+  function checkMorseChars(char) {
+    return /[\s\.\-\/]/.test(char);
+  };
 
-//   const userInputArr = document.querySelector("textarea").value.split("");
+  if (userInputArr.every(checkMorseChars)) {
+    //run decoder aka assume morse
+    document.querySelector("#detectLabel").innerText = "Morse - Detected";
+    document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+  } else {
+    //run encoder aka assume english
+    document.querySelector("#detectLabel").innerText = "English - Detected";
+    document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+  };
 
-//   function checkMorseChars(char) {
-//     return /[\s\.\-\/]/.test(char);
+  //resize output field to fit overflowing paragraph morse
+  const outputHeight = document.querySelector("p").scrollHeight;
+  if (outputHeight > document.querySelector("textarea").scrollHeight) {
+    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
+    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
+  };
+})
+
+
+
+//for old buttons, not radio btns
+//clicking encoder button eng to morse
+// document.querySelector("#encoderBtn").addEventListener("click", () => {
+//   document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+
+//   //resize output field to fit overflowing paragraph morse
+//   const outputHeight = document.querySelector("p").scrollHeight;
+//   if (outputHeight > document.querySelector("textarea").scrollHeight) {
+//     document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
+//     document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
 //   }
+// });
 
-//   if (userInputArr.every(checkMorseChars)) {
-//     //run decoder aka assume morse
-//     console.log("working there");
-//     console.log(userInputArr);
-//     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-//   } else {
-//     //run encoder aka assume english
-//     console.log("working here");
-//     document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
-//   }
+// //clicking decoder button morse to eng
+// document.querySelector("#decoderBtn").addEventListener("click", () => {
+//   document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
 
 //   //resize output field to fit overflowing paragraph morse
 //   const outputHeight = document.querySelector("p").scrollHeight;
