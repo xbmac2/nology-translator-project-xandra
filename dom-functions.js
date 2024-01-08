@@ -13,6 +13,15 @@ document.querySelector("textarea").addEventListener("input", e => {
   document.querySelector(".output-field").style.height = `${scHeight}px`;
 })
 
+//resizes output field to fit paragraph morse
+const resizeOutputField = () => {
+  const outputHeight = document.querySelector("p").scrollHeight;
+  if (outputHeight > document.querySelector("textarea").scrollHeight) {
+    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
+    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
+  }
+}
+
 //adding input to textarea translates either way
 //the below works until user tries to mix inputs
 
@@ -26,7 +35,7 @@ document.querySelector("textarea").addEventListener("input", () => {
 
   //autocheck aka detect langugae;
   if (document.querySelector("#detect").checked) {
-    if (userInputArr.every(checkMorseChars)) {
+    if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
       //run decoder aka assume morse
       document.querySelector("#detectLabel").innerText = "Morse - Detected";
       document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
@@ -45,35 +54,20 @@ document.querySelector("textarea").addEventListener("input", () => {
     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
   }
 
-  //resize output field to fit overflowing paragraph morse
-  const outputHeight = document.querySelector("p").scrollHeight;
-  if (outputHeight > document.querySelector("textarea").scrollHeight) {
-    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
-    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-  }
+  resizeOutputField();
 });
 
 //checking radio buttons runs the relevant function
 document.querySelector("#english").addEventListener("click", () => {
   document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
 
-  //resize output field to fit overflowing paragraph morse
-  const outputHeight = document.querySelector("p").scrollHeight;
-  if (outputHeight > document.querySelector("textarea").scrollHeight) {
-    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
-    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-  };
+  resizeOutputField();
 });
 
 document.querySelector("#morse").addEventListener("click",  () => {
   document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
 
-  //resize output field to fit overflowing paragraph morse
-  const outputHeight = document.querySelector("p").scrollHeight;
-  if (outputHeight > document.querySelector("textarea").scrollHeight) {
-    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
-    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-  };
+  resizeOutputField();
 });
 
 document.querySelector("#detect").addEventListener("click", () => {
@@ -83,7 +77,7 @@ document.querySelector("#detect").addEventListener("click", () => {
     return /[\s\.\-\/]/.test(char);
   };
 
-  if (userInputArr.every(checkMorseChars)) {
+  if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
     //run decoder aka assume morse
     document.querySelector("#detectLabel").innerText = "Morse - Detected";
     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
@@ -93,12 +87,7 @@ document.querySelector("#detect").addEventListener("click", () => {
     document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
   };
 
-  //resize output field to fit overflowing paragraph morse
-  const outputHeight = document.querySelector("p").scrollHeight;
-  if (outputHeight > document.querySelector("textarea").scrollHeight) {
-    document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
-    document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-  };
+  resizeOutputField();
 })
 
 
