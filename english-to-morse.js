@@ -1,4 +1,4 @@
-const encoder = (stringToEncode) => {
+export const encoder = (stringToEncode) => {
   //creates array of uppercase characters and / for spaces
   const capitalisedStr = stringToEncode.toUpperCase().replaceAll(" ", "/");
   const messageArr = Array.from(capitalisedStr);
@@ -15,11 +15,5 @@ const encoder = (stringToEncode) => {
     };
   };
   const morseStr = morseArr.join(" ");
-  //console.log(morseStr);
-  document.querySelector("#morseOutput").innerText = morseStr;
+  return morseStr;
 };
-
-//clicking button
-document.querySelector("#translateBtn").addEventListener("click", () => {
-  encoder(document.querySelector("#englishInput").value)
-});
