@@ -1,5 +1,6 @@
-import { encoder } from "./english-to-morse.js";
-import { decoder } from "./morse-to-english.js";
+// import { encoder } from "./english-to-morse.js";
+// import { decoder } from "./morse-to-english.js";
+import{ encoder, decoder } from "./translation.js"
 
 //default select detect radio btn on load
 document.querySelector("#detect").checked = true;

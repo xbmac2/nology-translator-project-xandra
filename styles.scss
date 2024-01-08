@@ -42,19 +42,25 @@ h1 {
   display: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Average+Sans&display=swap');
 .radio__label {
   padding: 8px 7px;
   //border: 1px solid red;
   display: flex;
   align-items: center;
-  font-family: sans-serif;
+  font-family: 'Average Sans', sans-serif;
   //font-size: medium;
+}
+
+.radio__label:hover {
+  background-color: #e7e1db8b;
 }
 
 .radio__input:checked + .radio__label {
   background-color: #e4dcd4de;
   border-bottom: 2px solid #6e6255;
   color: #6e6255;
+  font-weight: bold;
 }
 
 .translations-container {
