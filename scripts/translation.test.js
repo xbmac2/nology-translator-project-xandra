@@ -11,7 +11,7 @@ describe("Testing encoder()", () => {
 
   it("Should return slash / between words", () => {
     expect(encoder("Quick brown fox jumps over the lazy dog")).toBe("--.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.");
-    expect(encoder("Sphinx of black quartz, judge my vow")).toBe("... .--. .... .. -. -..- / --- ..-. / -... .-.. .- -.-. -.- / --.- ..- .- .-. - --.. / .--- ..- -.. --. . / -- -.-- / ...- --- .--");
+    expect(encoder("Sphinx of black quartz judge my vow")).toBe("... .--. .... .. -. -..- / --- ..-. / -... .-.. .- -.-. -.- / --.- ..- .- .-. - --.. / .--- ..- -.. --. . / -- -.-- / ...- --- .--");
   });
 
   it("Should encode numbers", () => {

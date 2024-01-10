@@ -42,6 +42,11 @@ const cypherNumerals = {
 
 //english to morse
 export const encoder = (stringToEncode) => {
+
+  if (/[^0-9A-Za-z\s]/.test(stringToEncode)) {
+    throw new Error("Only encodes letters and numbers - don't include special characters")
+  }
+
   //creates array of uppercase characters and / for spaces
   const capitalisedStr = stringToEncode.toUpperCase().replaceAll(" ", "/");
   const messageArr = Array.from(capitalisedStr);
@@ -63,6 +68,11 @@ export const encoder = (stringToEncode) => {
 
 //morse to english
 export const decoder = (stringToDecode) => {
+
+  if (/[^\.\-\/\s]/.test(stringToDecode)) {
+    throw new Error("Only decodes morse - don't include letters or numbers")
+  }
+
   const cleanMorseArr = stringToDecode.split(" ");
   //iterates over array to make morse string to letters
   let englishArr = [];
