@@ -4,25 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <script src="cyphers.js" defer></script>
-  <!-- <script src="english-to-morse.js" defer></script> -->
-  <script src="dom-functions.js" type="module" defer></script>
+  <script src="/scripts/dom-functions.js" type="module" defer></script>
   <title>Morse Code Translator</title>
 </head>
 <body>
-  <header>
-    <h1>Morse Code Translator</h1>
+  <header class="header">
+    <p>A very classic morse code translator, only for letters and numbers</p>
+    <h1 class="type-written">Morse Code Translator</h1>
+    
   </header>
   
   <section class="options-bar">
-    <!-- <button class="translate-btn" id="encoderBtn">Translate Eng to Morse</button>
-    <button class="translate-btn" id="decoderBtn">Translate Morse to Eng</button> -->
     <div class ="btns-container">
-      <input type="radio" name="language" value="detect" id="detect" class="radio__input"><label for="detect" id="detectLabel" class="radio__label">Detect Language</label>
+      <!-- <input type="radio" name="language" value="detect" id="detect" class="radio__input"><label for="detect" id="detectLabel" class="radio__label">Detect Language</label> -->
       <input type="radio" name="language" value="english" id="english" class="radio__input"><label for="english" class="radio__label">English</label>
       <input type="radio" name="language" value="morse" id="morse" class="radio__input"><label for="morse" class="radio__label">Morse</label>
+      
     </div>
-    
+    <p class="error-messages" id="errorMessages"></p>
   </section>
 
   <div class="translations-container">

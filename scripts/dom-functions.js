@@ -1,8 +1,9 @@
-import { encoder } from "./english-to-morse.js";
-import { decoder } from "./morse-to-english.js";
+// import { encoder } from "./english-to-morse.js";
+// import { decoder } from "./morse-to-english.js";
+import{ encoder, decoder } from "./translation.js"
 
 //default select detect radio btn on load
-document.querySelector("#detect").checked = true;
+document.querySelector("#english").checked = true;
 
 // auto-resizes textarea height
 document.querySelector("textarea").addEventListener("input", e => {
@@ -27,6 +28,8 @@ const resizeOutputField = () => {
 
 document.querySelector("textarea").addEventListener("input", () => {
 
+ const userInputStr = document.querySelector("#userInput").value;
+
   const userInputArr = document.querySelector("textarea").value.split("");
 
   function checkMorseChars(char) {
@@ -34,24 +37,43 @@ document.querySelector("textarea").addEventListener("input", () => {
   };
 
   //autocheck aka detect langugae;
-  if (document.querySelector("#detect").checked) {
-    if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
-      //run decoder aka assume morse
-      document.querySelector("#detectLabel").innerText = "Morse - Detected";
-      document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-    } else {
-      //run encoder aka assume english
-      document.querySelector("#detectLabel").innerText = "English - Detected";
-      document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
-    }
-  }
+  // if (document.querySelector("#detect").checked) {
+  //   if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
+  //     //run decoder aka assume morse
+  //     document.querySelector("#detectLabel").innerText = "Morse - Detected";
+  //     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+  //   } else {
+  //     //run encoder aka assume english
+  //     document.querySelector("#detectLabel").innerText = "English - Detected";
+  //     document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+  //   }
+  // }
 
   if (document.querySelector("#english").checked) {
-    document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+
+    try {
+      document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+    } catch (e) {
+      document.querySelector("#errorMessages").innerText = e.message;
+    } finally {
+      if (document.querySelector("#userInput").value == "") {
+        document.querySelector("#errorMessages").innerText = "";
+      }
+    }
   };
 
   if (document.querySelector("#morse").checked) {
-    document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+    try {
+      document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+    } catch (e) {
+      
+      document.querySelector("#errorMessages").innerText = e.message;
+    } finally {
+      if (document.querySelector("textarea").value == "") {
+        document.querySelector("#errorMessages").innerText = "";
+      }
+    }
+    
   }
 
   resizeOutputField();
@@ -70,25 +92,25 @@ document.querySelector("#morse").addEventListener("click",  () => {
   resizeOutputField();
 });
 
-document.querySelector("#detect").addEventListener("click", () => {
-  const userInputArr = document.querySelector("textarea").value.split("");
+// document.querySelector("#detect").addEventListener("click", () => {
+//   const userInputArr = document.querySelector("textarea").value.split("");
 
-  function checkMorseChars(char) {
-    return /[\s\.\-\/]/.test(char);
-  };
+//   function checkMorseChars(char) {
+//     return /[\s\.\-\/]/.test(char);
+//   };
 
-  if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
-    //run decoder aka assume morse
-    document.querySelector("#detectLabel").innerText = "Morse - Detected";
-    document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-  } else {
-    //run encoder aka assume english
-    document.querySelector("#detectLabel").innerText = "English - Detected";
-    document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
-  };
+//   if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
+//     //run decoder aka assume morse
+//     document.querySelector("#detectLabel").innerText = "Morse - Detected";
+//     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+//   } else {
+//     //run encoder aka assume english
+//     document.querySelector("#detectLabel").innerText = "English - Detected";
+//     document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+//   };
 
-  resizeOutputField();
-})
+//   resizeOutputField();
+// })
 
 
 

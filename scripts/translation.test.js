@@ -1,13 +1,17 @@
 //import encoder and decoder
+import { encoder } from "./translation.js";
+import { decoder } from "./translation.js";
+
+
 
 describe("Testing encoder()", () => {
   it("Should return a morse string", () => {
-    expect(encoder(example)).toBe(". -..- .- -- .--. .-.. .")
+    expect(encoder("example")).toBe(". -..- .- -- .--. .-.. .")
   });
 
   it("Should return slash / between words", () => {
     expect(encoder("Quick brown fox jumps over the lazy dog")).toBe("--.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.");
-    expect(encoder("Sphinx of black quartz, judge my vow")).toBe("... .--. .... .. -. -..- / --- ..-. / -... .-.. .- -.-. -.- / --.- ..- .- .-. - --.. / .--- ..- -.. --. . / -- -.-- / ...- --- .--");
+    expect(encoder("Sphinx of black quartz judge my vow")).toBe("... .--. .... .. -. -..- / --- ..-. / -... .-.. .- -.-. -.- / --.- ..- .- .-. - --.. / .--- ..- -.. --. . / -- -.-- / ...- --- .--");
   });
 
   it("Should encode numbers", () => {
@@ -26,7 +30,4 @@ describe("Testing decoder()", () => {
     expect(decoder("..--- ----- ..--- ....- / .. ... / .- / .-.. . .- .--. / -.-- . .- .-. / ... --- / ..-. . -... .-. ..- .- .-. -.-- / .... .- ... / ..--- ----. / -.. .- -.-- ...")).toBe("2024 is a leap year so february has 29 days");
     expect(decoder("....- ...-- ...-- ..--- .---- ..... / -.... ..... ---.. / ----. ----- --...")).toBe("433215 658 907");
   });
-  it("Should not decode invalid strings", () => {
-    
-  })
 })
