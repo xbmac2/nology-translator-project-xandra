@@ -114,6 +114,6 @@ textarea::-webkit-scrollbar {
   height: 20px;
 }
 
-.below-translations-container {
-  height: 150px;
+.footer {
+  height: 50px;
 }

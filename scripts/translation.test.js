@@ -1,6 +1,4 @@
-//import encoder and decoder
-import { encoder } from "./translation.js";
-import { decoder } from "./translation.js";
+import { encoder, decoder } from "./translation.js";
 
 
 
