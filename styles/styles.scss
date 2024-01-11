@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Average+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rosario:wght@500&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -6,7 +10,7 @@
 
 body {
   background: rgb(230,222,198);
-  background: radial-gradient(circle, rgba(230,222,198,1) 31%, rgba(154,128,111,1) 100%); 
+  background: radial-gradient(circle, rgba(230,222,198,1) 31%, rgba(154,128,111,1) 100%);
 }
 
 .header {
@@ -16,7 +20,6 @@ body {
   align-items: center;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
 h1 {
   font-family: 'Fredericka the Great', serif;
   font-size: 80px;
@@ -46,7 +49,6 @@ h1 {
   display: none;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Average+Sans&display=swap');
 .radio__label {
   padding: 8px 7px;
   display: flex;
@@ -72,7 +74,6 @@ h1 {
   margin: 15px 0px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Rosario:wght@500&display=swap');
 .textarea {
   border-radius: 8px;
   outline: none;
@@ -120,6 +121,6 @@ textarea::-webkit-scrollbar {
   height: 20px;
 }
 
-.below-translations-container {
-  height: 150px;
+.footer {
+  height: 50px;
 }

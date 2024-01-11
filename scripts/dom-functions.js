@@ -1,8 +1,6 @@
-// import { encoder } from "./english-to-morse.js";
-// import { decoder } from "./morse-to-english.js";
 import{ encoder, decoder } from "./translation.js"
 
-//default select detect radio btn on load
+//default select radio btn on load
 document.querySelector("#english").checked = true;
 
 // auto-resizes textarea height
@@ -23,57 +21,39 @@ const resizeOutputField = () => {
   }
 }
 
-//adding input to textarea translates either way
-//the below works until user tries to mix inputs
-
+//adding input to textarea translates
 document.querySelector("textarea").addEventListener("input", () => {
-
- const userInputStr = document.querySelector("#userInput").value;
-
-  const userInputArr = document.querySelector("textarea").value.split("");
-
-  function checkMorseChars(char) {
-    return /[\s\.\-\/]/.test(char);
-  };
-
-  //autocheck aka detect langugae;
-  // if (document.querySelector("#detect").checked) {
-  //   if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
-  //     //run decoder aka assume morse
-  //     document.querySelector("#detectLabel").innerText = "Morse - Detected";
-  //     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-  //   } else {
-  //     //run encoder aka assume english
-  //     document.querySelector("#detectLabel").innerText = "English - Detected";
-  //     document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
-  //   }
-  // }
+  const userInputStr = document.querySelector("#userInput").value;
+  const outputArea = document.querySelector("#translatedOutput");
 
   if (document.querySelector("#english").checked) {
 
+    let isValid = /[0-9A-Za-z\s]/.test(userInputStr);
+
     try {
-      document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+      outputArea.innerText = encoder(userInputStr);
+
+      if (isValid || userInputStr === "") {
+        document.querySelector("#errorMessages").innerText = "";
+      };
     } catch (e) {
       document.querySelector("#errorMessages").innerText = e.message;
-    } finally {
-      if (document.querySelector("#userInput").value == "") {
-        document.querySelector("#errorMessages").innerText = "";
-      }
-    }
+    };
   };
 
   if (document.querySelector("#morse").checked) {
+    let isValid = /[\.\-\/\s]/.test(userInputStr);
+
     try {
-      document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-    } catch (e) {
-      
-      document.querySelector("#errorMessages").innerText = e.message;
-    } finally {
-      if (document.querySelector("textarea").value == "") {
+      outputArea.innerText = decoder(userInputStr);
+
+      if (isValid || userInputStr === "") {
         document.querySelector("#errorMessages").innerText = "";
-      }
-    }
-    
+      };
+    } catch (e) {
+
+      document.querySelector("#errorMessages").innerText = e.message;
+    };
   }
 
   resizeOutputField();
@@ -81,60 +61,40 @@ document.querySelector("textarea").addEventListener("input", () => {
 
 //checking radio buttons runs the relevant function
 document.querySelector("#english").addEventListener("click", () => {
-  document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
+  const userInputStr = document.querySelector("#userInput").value;
+  const outputArea = document.querySelector("#translatedOutput");
+
+  let isValid = /[0-9A-Za-z\s]/.test(userInputStr);
+
+  try {
+    outputArea.innerText = encoder(userInputStr);
+
+    if (isValid || userInputStr === "") {
+      document.querySelector("#errorMessages").innerText = "";
+      };
+  } catch (e) {
+    document.querySelector("#errorMessages").innerText = e.message;
+  };
 
   resizeOutputField();
 });
 
 document.querySelector("#morse").addEventListener("click",  () => {
-  document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
+  const userInputStr = document.querySelector("#userInput").value;
+  const outputArea = document.querySelector("#translatedOutput");
+
+  let isValid = /[\.\-\/\s]/.test(userInputStr);
+
+  try {
+    outputArea.innerText = decoder(userInputStr);
+      
+    if (isValid || userInputStr === "") {
+      document.querySelector("#errorMessages").innerText = "";
+      };
+
+  } catch (e) {
+    document.querySelector("#errorMessages").innerText = e.message;
+  };
 
   resizeOutputField();
 });
-
-// document.querySelector("#detect").addEventListener("click", () => {
-//   const userInputArr = document.querySelector("textarea").value.split("");
-
-//   function checkMorseChars(char) {
-//     return /[\s\.\-\/]/.test(char);
-//   };
-
-//   if (userInputArr.every(checkMorseChars) && userInputArr[0]) {
-//     //run decoder aka assume morse
-//     document.querySelector("#detectLabel").innerText = "Morse - Detected";
-//     document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-//   } else {
-//     //run encoder aka assume english
-//     document.querySelector("#detectLabel").innerText = "English - Detected";
-//     document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
-//   };
-
-//   resizeOutputField();
-// })
-
-
-
-//for old buttons, not radio btns
-//clicking encoder button eng to morse
-// document.querySelector("#encoderBtn").addEventListener("click", () => {
-//   document.querySelector("#translatedOutput").innerText = encoder(document.querySelector("#userInput").value);
-
-//   //resize output field to fit overflowing paragraph morse
-//   const outputHeight = document.querySelector("p").scrollHeight;
-//   if (outputHeight > document.querySelector("textarea").scrollHeight) {
-//     document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
-//     document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-//   }
-// });
-
-// //clicking decoder button morse to eng
-// document.querySelector("#decoderBtn").addEventListener("click", () => {
-//   document.querySelector("#translatedOutput").innerText = decoder(document.querySelector("#userInput").value);
-
-//   //resize output field to fit overflowing paragraph morse
-//   const outputHeight = document.querySelector("p").scrollHeight;
-//   if (outputHeight > document.querySelector("textarea").scrollHeight) {
-//     document.querySelector(".translations-container").style.height = `${outputHeight + 30}px`;
-//     document.querySelector(".output-field").style.height = `${outputHeight + 30}px`;
-//   }
-// });
